@@ -30,23 +30,27 @@ A React-based single-page application for Pet Heaven Animal Welfare Society, fea
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd assignment3
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Set up backend services:
+
    - **Supabase**: Database automatically initializes on first app startup
    - **Pet APIs**: Get free API keys from:
      - [The Cat API](https://thecatapi.com/)
      - [The Dog API](https://docs.thedogapi.com/docs/intro)
-   
+
    Create a `.env` file in the root directory:
+
 ```env
 # Supabase Configuration (Required)
 REACT_APP_SUPABASE_URL=your_supabase_project_url
@@ -57,11 +61,12 @@ REACT_APP_CAT_API_KEY=your_cat_api_key_here
 REACT_APP_DOG_API_KEY=your_dog_api_key_here
 ```
 
-   **Note**: The database schema (tables, triggers, RLS policies) will be automatically created when you first run the app. No manual SQL execution required!
+**Note**: The database schema (tables, triggers, RLS policies) will be automatically created when you first run the app. No manual SQL execution required!
 
-   **Note**: Pet API keys are optional but recommended for higher rate limits.
+**Note**: Pet API keys are optional but recommended for higher rate limits.
 
 4. Start the development server:
+
 ```bash
 npm start
 ```
@@ -92,6 +97,7 @@ supabase/
 ## Key Components
 
 ### Reusable Components
+
 - `Button` - Styled button with variants
 - `Card` - Card container component
 - `Modal` - Modal dialog component
@@ -100,6 +106,7 @@ supabase/
 - `PetCard` - Pet display card
 
 ### Page Sections
+
 - `HomeSection` - Hero and features
 - `AboutSection` - About Pet Heaven
 - `PetGallery` - Pet gallery with filters
@@ -107,6 +114,7 @@ supabase/
 - `ContactSection` - Contact info and login/register
 
 ### Forms
+
 - `MemberRegistrationForm` - New member registration
 - `PetSurrenderForm` - Pet surrender submission
 - `AdoptionForm` - Adoption application
@@ -121,6 +129,7 @@ supabase/
 ## Deployment
 
 The app can be deployed to:
+
 - **Netlify**: Connect your GitHub repo and deploy automatically
 - **GitHub Pages**: Use `npm run build` and deploy the `build` folder
 - **Firebase**: Use Firebase Hosting
@@ -137,6 +146,7 @@ This creates an optimized production build in the `build` folder.
 ## Features Implementation
 
 ### Authentication
+
 - Member registration with Supabase Auth
 - Login/logout functionality with session management
 - User session persistence (Supabase handles this)
@@ -144,12 +154,14 @@ This creates an optimized production build in the `build` folder.
 - Member profiles stored in PostgreSQL database
 
 ### Pet Management
+
 - Fetch pets from The Cat API and The Dog API
 - Filter pets by type (cats/dogs)
 - Search pets by breed or name
 - Display pet information with images
 
 ### Forms
+
 - Client-side validation
 - Error handling and display
 - Success messages
@@ -157,31 +169,13 @@ This creates an optimized production build in the `build` folder.
 - Adoption applications stored in database
 - Pet surrender requests stored in database
 
-## Backend Services
+## Technical Implementation & Backend Services
 
 ### Supabase Integration
+
 - **Database**: PostgreSQL with Row Level Security (RLS)
 - **Authentication**: Supabase Auth with email/password
-- **Tables**: 
+- **Tables**:
   - `members` - Member profiles
   - `adoption_applications` - Adoption form submissions
   - `pet_surrender_requests` - Surrender form submissions
-
-
-## Setup Documentation
-
-- **[Supabase Setup Guide](./SUPABASE_SETUP.md)** - Complete setup instructions
-- **[Testing Guide](./TESTING_GUIDE.md)** - Step-by-step testing procedures
-
-## Backend Architecture
-
-- **Database**: All data stored in Supabase PostgreSQL database
-- **Authentication**: Supabase Auth (secure, scalable, with session management)
-- **Auto-Initialization**: Database schema automatically created on first app startup
-- **Security**: Row Level Security (RLS) policies protect user data
-- **Pet APIs**: Optional but recommended for higher rate limits
-- **Database Schema**: See `supabase/schema.sql` for complete structure
-
-## License
-
-This project is created for educational purposes as part of Assignment 3.
