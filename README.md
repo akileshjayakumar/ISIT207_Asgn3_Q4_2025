@@ -33,7 +33,6 @@ A React-based single-page application for Pet Heaven Animal Welfare Society, fea
 
 ```bash
 git clone <repository-url>
-cd assignment3
 ```
 
 2. Install dependencies:
@@ -55,15 +54,7 @@ npm install
 # Supabase Configuration (Required)
 REACT_APP_SUPABASE_URL=your_supabase_project_url
 REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
-
-# Pet APIs (optional but recommended)
-REACT_APP_CAT_API_KEY=your_cat_api_key_here
-REACT_APP_DOG_API_KEY=your_dog_api_key_here
 ```
-
-**Note**: The database schema (tables, triggers, RLS policies) will be automatically created when you first run the app. No manual SQL execution required!
-
-**Note**: Pet API keys are optional but recommended for higher rate limits.
 
 4. Start the development server:
 
