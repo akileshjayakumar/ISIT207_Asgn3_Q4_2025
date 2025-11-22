@@ -1,70 +1,187 @@
-# Getting Started with Create React App
+# Pet Heaven - Animal Welfare Society Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based single-page application for Pet Heaven Animal Welfare Society, featuring pet adoption, member registration, and pet surrender services.
+
+## Features
+
+- **Pet Gallery**: Browse cats and dogs with filtering capabilities
+- **Adoption System**: View available pets and submit adoption applications
+- **Member Registration**: Register as a member or supporter
+- **Pet Surrender**: Submit pets for surrender to the society
+- **User Authentication**: Login/logout functionality for members
+- **Responsive Design**: Mobile-friendly interface
+- **REST API Integration**: Uses The Cat API and The Dog API for pet images
+
+## Technology Stack
+
+- React 19.2.0
+- React Context API for state management
+- **Supabase** (PostgreSQL database + Authentication)
+- REST APIs: The Cat API & The Dog API
+- CSS3 with custom styling
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd assignment3
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up backend services:
+   - **Supabase**: Database automatically initializes on first app startup
+   - **Pet APIs**: Get free API keys from:
+     - [The Cat API](https://thecatapi.com/)
+     - [The Dog API](https://docs.thedogapi.com/docs/intro)
+   
+   Create a `.env` file in the root directory:
+```env
+# Supabase Configuration (Required)
+REACT_APP_SUPABASE_URL=your_supabase_project_url
+REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Pet APIs (optional but recommended)
+REACT_APP_CAT_API_KEY=your_cat_api_key_here
+REACT_APP_DOG_API_KEY=your_dog_api_key_here
+```
+
+   **Note**: The database schema (tables, triggers, RLS policies) will be automatically created when you first run the app. No manual SQL execution required!
+
+   **Note**: Pet API keys are optional but recommended for higher rate limits.
+
+4. Start the development server:
+```bash
+npm start
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Auth/           # Authentication components
+│   ├── Forms/          # Form components (reusable)
+│   ├── Layout/         # Header, Footer
+│   ├── Pets/           # Pet-related components
+│   ├── Sections/       # Page sections (Home, About, etc.)
+│   └── UI/             # Reusable UI components
+├── contexts/           # React Context providers
+├── services/           # API service functions (Supabase, Pet APIs)
+├── config/             # Configuration files (Supabase, API configs)
+├── utils/              # Utility functions
+└── App.js              # Main app component
+
+supabase/
+└── schema.sql          # Database schema and RLS policies
+```
+
+## Key Components
+
+### Reusable Components
+- `Button` - Styled button with variants
+- `Card` - Card container component
+- `Modal` - Modal dialog component
+- `FormInput`, `FormSelect`, `FormTextarea` - Form input components
+- `LoadingSpinner` - Loading indicator
+- `PetCard` - Pet display card
+
+### Page Sections
+- `HomeSection` - Hero and features
+- `AboutSection` - About Pet Heaven
+- `PetGallery` - Pet gallery with filters
+- `AdoptionSection` - Adoption listings and forms
+- `ContactSection` - Contact info and login/register
+
+### Forms
+- `MemberRegistrationForm` - New member registration
+- `PetSurrenderForm` - Pet surrender submission
+- `AdoptionForm` - Adoption application
+- `LoginForm` - User authentication
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` - Runs the app in development mode
+- `npm run build` - Builds the app for production
+- `npm test` - Launches the test runner
 
-### `npm start`
+## Deployment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The app can be deployed to:
+- **Netlify**: Connect your GitHub repo and deploy automatically
+- **GitHub Pages**: Use `npm run build` and deploy the `build` folder
+- **Firebase**: Use Firebase Hosting
+- **Vercel**: Connect repository for automatic deployments
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Build for Production
 
-### `npm test`
+```bash
+npm run build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This creates an optimized production build in the `build` folder.
 
-### `npm run build`
+## Features Implementation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Authentication
+- Member registration with Supabase Auth
+- Login/logout functionality with session management
+- User session persistence (Supabase handles this)
+- Protected content for members
+- Member profiles stored in PostgreSQL database
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pet Management
+- Fetch pets from The Cat API and The Dog API
+- Filter pets by type (cats/dogs)
+- Search pets by breed or name
+- Display pet information with images
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Forms
+- Client-side validation
+- Error handling and display
+- Success messages
+- **Database integration**: All form submissions saved to Supabase
+- Adoption applications stored in database
+- Pet surrender requests stored in database
 
-### `npm run eject`
+## Backend Services
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Supabase Integration
+- **Database**: PostgreSQL with Row Level Security (RLS)
+- **Authentication**: Supabase Auth with email/password
+- **Tables**: 
+  - `members` - Member profiles
+  - `adoption_applications` - Adoption form submissions
+  - `pet_surrender_requests` - Surrender form submissions
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Setup Documentation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **[Supabase Setup Guide](./SUPABASE_SETUP.md)** - Complete setup instructions
+- **[Testing Guide](./TESTING_GUIDE.md)** - Step-by-step testing procedures
 
-## Learn More
+## Backend Architecture
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Database**: All data stored in Supabase PostgreSQL database
+- **Authentication**: Supabase Auth (secure, scalable, with session management)
+- **Auto-Initialization**: Database schema automatically created on first app startup
+- **Security**: Row Level Security (RLS) policies protect user data
+- **Pet APIs**: Optional but recommended for higher rate limits
+- **Database Schema**: See `supabase/schema.sql` for complete structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is created for educational purposes as part of Assignment 3.

@@ -1,0 +1,70 @@
+.pet-list-container {
+  padding: 1.5rem 0;
+}
+
+.pet-list-header {
+  margin-bottom: 1.5rem;
+}
+
+.pet-list-header h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  color: #333;
+}
+
+.pet-count {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.pet-list-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-input {
+  width: 100%;
+}
+
+.pet-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pet-list-error,
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.pet-list-error {
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .pet-list-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .pet-list-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pet-list-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

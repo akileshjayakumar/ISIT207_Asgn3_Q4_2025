@@ -1,0 +1,113 @@
+.floating-pet-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  /* pointer-events controlled by inline style in component (auto on desktop, none on mobile) */
+}
+
+.floating-pet-wrapper {
+  position: absolute;
+  pointer-events: none; /* Allow clicks to pass through to content below */
+  transition: opacity 1.5s ease-in;
+  will-change: transform;
+  animation-fill-mode: both;
+}
+
+.floating-pet-image {
+  position: relative;
+  opacity: 0.85;
+  will-change: transform;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transform-origin: center;
+}
+
+.floating-pet-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Circle shape - all images are circles */
+.floating-pet-image.circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden; /* Ensure image stays within circle */
+}
+
+/* Smooth space-like floating animation - moves wrapper across screen */
+/* Midpoint is adjusted to keep images on edges, avoiding center */
+@keyframes floatSpace {
+  0% {
+    transform: translate(0vw, 0vh) scale(0.9);
+  }
+  50% {
+    /* Keep midpoint on edges - adjust based on trajectory direction */
+    transform: translate(calc(var(--delta-x) * 0.5), calc(var(--delta-y) * 0.5)) 
+               scale(1.05);
+  }
+  100% {
+    transform: translate(var(--delta-x), var(--delta-y)) 
+               scale(0.9);
+  }
+}
+
+/* Rotation animation for the image inside */
+@keyframes rotateSpace {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--rotation));
+  }
+}
+
+.floating-pet-wrapper {
+  animation: floatSpace infinite linear;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* Smooth easing */
+}
+
+.floating-pet-image.circle {
+  animation: rotateSpace infinite linear;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .floating-pet-image.circle {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-pet-image {
+    opacity: 0.75; /* Slightly more transparent on mobile */
+  }
+
+  .floating-pet-image.circle {
+    width: 85px;
+    height: 85px;
+  }
+
+  /* Slower animation on mobile for better performance */
+  .floating-pet-image.circle {
+    animation-duration: 30s !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-pet-image.circle {
+    width: 65px;
+    height: 65px;
+  }
+
+  .floating-pet-image {
+    opacity: 0.7;
+  }
+}
+
